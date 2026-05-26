@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Onboardingový dotazník – Zacíleno</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%23ED1E00%27/%3E%3Cpath d=%27M4 16 L16 16 M10 10 L16 16 L10 22%27 stroke=%27white%27 stroke-width=%272.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3Cline x1=%2719%27 y1=%278%27 x2=%2719%27 y2=%2724%27 stroke=%27white%27 stroke-width=%272.8%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Silka:wght@400;600;700&display=swap" rel="stylesheet">
@@ -412,36 +413,73 @@ select {
 .btn-submit:hover .btn-arrow { transform: translateX(6px); }
 
 /* ── SUCCESS ── */
-.success-screen {
-  display: none;
-  text-align: center;
-  padding: 6rem 2rem;
-}
-.success-icon {
-  width: 80px; height: 80px;
+.success-screen { display: none; }
+.success-hero {
   background: var(--red);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.75rem;
+  padding: 5rem 1.5rem 7rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-.success-icon svg { width: 38px; height: 38px; stroke: white; }
-.success-screen h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  line-height: 1;
-  margin-bottom: 1rem;
-  color: var(--black);
+.success-hero-dots {
+  position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
 }
-.success-screen h2 em {
-  font-style: normal;
-  color: var(--red);
+.success-hero-bolt {
+  position: absolute; right: 4%; bottom: 30px;
+  opacity: 0.2; transform: rotate(-8deg); pointer-events: none;
 }
-.success-screen p { color: var(--gray-text); max-width: 420px; margin: 0 auto; font-size: 1.05rem; }
+.success-wave {
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 56px; background: var(--off-white);
+  clip-path: ellipse(54% 100% at 50% 100%);
+}
+.success-check {
+  width: 76px; height: 76px; background: var(--yellow);
+  border-radius: 6px; display: flex; align-items: center;
+  justify-content: center; margin: 0 auto 2rem; position: relative; z-index: 1;
+}
+.success-check svg { width: 38px; height: 38px; stroke: var(--black); stroke-width: 2.8; }
+.success-hero h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.8rem, 8vw, 5rem); text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.95;
+  color: var(--white); margin-bottom: 0; position: relative; z-index: 1;
+}
+.success-hero h2 em { font-style: normal; color: var(--yellow); display: block; }
+.success-body {
+  max-width: 640px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; text-align: center;
+}
+.success-card {
+  background: var(--white); border: 2px solid var(--gray); border-radius: 10px;
+  padding: 2rem; position: relative; margin-bottom: 2rem;
+}
+.success-card::before {
+  content: ''; position: absolute; left: 0; top: 12px; bottom: 12px;
+  width: 3px; background: var(--yellow); border-radius: 0 2px 2px 0;
+}
+.success-card p { font-size: 1.05rem; color: var(--gray-text); line-height: 1.7; text-align: left; }
+.success-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem;
+}
+@media(max-width: 560px) { .success-steps { grid-template-columns: 1fr; } }
+.success-step {
+  background: var(--white); border: 2px solid var(--gray);
+  border-radius: 10px; padding: 1.25rem 1rem; text-align: center;
+}
+.success-step-num {
+  width: 32px; height: 32px; background: var(--red); color: var(--white);
+  font-family: var(--font-accent); font-size: 0.9rem; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem;
+}
+.success-step p { font-size: 0.82rem; color: var(--gray-text); line-height: 1.5; }
+.btn-back {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--black); color: var(--white); font-family: var(--font-accent);
+  font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.9rem 2rem; border-radius: 5px; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-back:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 
 /* ── FOOTER ── */
 .footer {
@@ -511,9 +549,6 @@ select {
     <div class="hero-tag"><div class="hero-tag-dot"></div>Pojďme to rozjet</div>
     <h1>Mít zacíleno<br><em>se vyplací</em></h1>
     <p class="hero-sub">Vyplňte dotazník abychom se mohli rovnou pustit do práce. Čím víc víme předem, tím smysluplnější bude spolupráce a naše další společná schůzka.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><div class="meta-bullet"></div>10–15 minut</div>
-      <div class="hero-meta-item"><div class="meta-bullet"></div>Vaše data jsou u nás v bezpečí</div>
     </div>
   </div>
 
@@ -693,11 +728,31 @@ select {
 
 <!-- SUCCESS -->
 <div class="success-screen" id="success">
-  <div class="success-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <!-- Hero -->
+  <div class="success-hero">
+    <svg class="success-hero-dots" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs><pattern id="sdot" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="white"/></pattern></defs>
+      <rect width="800" height="300" fill="url(#sdot)"/>
+    </svg>
+    <svg class="success-hero-bolt" width="60" height="68" viewBox="0 0 78 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0L53.8152 37.1807L35.1964 50.3785L77.0736 86.5889L13.739 49.5885L36.5171 33.6687L0 0Z" fill="white"/>
+    </svg>
+    <div class="success-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Děkujeme!</h2>
+    <div class="success-wave"></div>
   </div>
-  <h2>Máme to, <em>díky!</em></h2>
-  <p>Dotazník jsme dostali. Brzy se vám ozveme a domluvíme termín prvního meetingu. Těšíme se na spolupráci! 🎯</p>
+
+  <!-- Body -->
+  <div class="success-body">
+    <div class="success-card">
+      <p>Naši specialisté vyhrnují rukávy a začínají pracovat na vašem projektu. Následovat bude schůzka, kde stanovíme další kroky — detaily dořešíme po telefonu či mailu.</p>
+      <p style="margin-top:1rem; font-weight:600; color:var(--black);">Hezký den.</p>
+    </div>
+
+    <a href="https://www.zacileno.cz" class="btn-back">← Zpět na web</a>
+  </div>
 </div>
 </main>
 
